@@ -17,7 +17,9 @@
             "console": "internalConsole",
             "stopAtEntry": false,
             "env": {
-                "PartEnvOverridden__StringValue": "This string has come from the environment variables"
+                "PartEnvOverridden__StringValue": "This string has come from the environment variables",
+                "AllEnvConfig__IntValue": "105",
+                "AllEnvConfig__StringValue": "This string has also come from the environment variables"
             }
         },
         {

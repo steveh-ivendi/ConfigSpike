@@ -47,6 +47,17 @@ namespace ConfigConsole
                 Console.WriteLine($"\tIntValue={appSettings.PartEnvOverridden.IntValue}");
                 Console.WriteLine($"\tStringValue={appSettings.PartEnvOverridden.StringValue}");
             }
+
+            if (appSettings.AllEnvConfig == null)
+            {
+                Console.WriteLine("The AllEnvConfig config element is not present");
+            }
+            else
+            {
+                Console.WriteLine("The AllEnvConfig config element is present:");
+                Console.WriteLine($"\tIntValue={appSettings.AllEnvConfig.IntValue}");
+                Console.WriteLine($"\tStringValue={appSettings.AllEnvConfig.StringValue}");
+            }
         }
     }
 
@@ -55,6 +66,7 @@ namespace ConfigConsole
         public SomeConfig NotOverridden { get; set; }
         public SomeConfig PartOverridden { get; set; }
         public SomeConfig PartEnvOverridden { get; set; }
+        public SomeConfig AllEnvConfig { get; set; }
     }
 
     public class SomeConfig
