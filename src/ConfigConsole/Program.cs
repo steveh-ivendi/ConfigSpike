@@ -10,6 +10,7 @@ namespace ConfigConsole
             var configuration = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", false)
                 .AddJsonFile("appsettings.override.json", true)
+                .AddEnvironmentVariables()
                 .Build();
 
             var appSettings = configuration.Get<AppSettings>();
@@ -35,6 +36,17 @@ namespace ConfigConsole
                 Console.WriteLine($"\tIntValue={appSettings.PartOverridden.IntValue}");
                 Console.WriteLine($"\tStringValue={appSettings.PartOverridden.StringValue}");
             }
+
+            if (appSettings.PartEnvOverridden == null)
+            {
+                Console.WriteLine("The PartEnvOverridden config element is not present");
+            }
+            else
+            {
+                Console.WriteLine("The PartEnvOverridden config element is present:");
+                Console.WriteLine($"\tIntValue={appSettings.PartEnvOverridden.IntValue}");
+                Console.WriteLine($"\tStringValue={appSettings.PartEnvOverridden.StringValue}");
+            }
         }
     }
 
@@ -42,6 +54,7 @@ namespace ConfigConsole
     {
         public SomeConfig NotOverridden { get; set; }
         public SomeConfig PartOverridden { get; set; }
+        public SomeConfig PartEnvOverridden { get; set; }
     }
 
     public class SomeConfig

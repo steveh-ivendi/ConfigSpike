@@ -15,7 +15,10 @@
             "cwd": "${workspaceFolder}/src/ConfigConsole",
             // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window
             "console": "internalConsole",
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "env": {
+                "PartEnvOverridden__StringValue": "This string has come from the environment variables"
+            }
         },
         {
             "name": ".NET Core Attach",
