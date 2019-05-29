@@ -8,7 +8,8 @@ namespace ConfigConsole
         static void Main(string[] args)
         {
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.json", false)
+                .AddJsonFile("appsettings.override.json", true)
                 .Build();
 
             var appSettings = configuration.Get<AppSettings>();
@@ -23,15 +24,27 @@ namespace ConfigConsole
                 Console.WriteLine($"\tIntValue={appSettings.NotOverridden.IntValue}");
                 Console.WriteLine($"\tStringValue={appSettings.NotOverridden.StringValue}");
             }
+
+            if (appSettings.PartOverridden == null)
+            {
+                Console.WriteLine("The PartOverridden config element is not present");
+            }
+            else
+            {
+                Console.WriteLine("The PartOverridden config element is present:");
+                Console.WriteLine($"\tIntValue={appSettings.PartOverridden.IntValue}");
+                Console.WriteLine($"\tStringValue={appSettings.PartOverridden.StringValue}");
+            }
         }
     }
 
     public class AppSettings
     {
-        public NotOverriddenConfig NotOverridden { get; set; }
+        public SomeConfig NotOverridden { get; set; }
+        public SomeConfig PartOverridden { get; set; }
     }
 
-    public class NotOverriddenConfig
+    public class SomeConfig
     {
         public int IntValue { get; set; }
         public string StringValue { get; set; }
